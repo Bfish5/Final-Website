@@ -1,0 +1,804 @@
+<!-- ===========================
+       faq-about.html
+=========================== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FAQ &amp; About | Finesse Web Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --navy: #0b1f3b;
+      --sky: #3ba9ff;
+      --sky-soft: #63b8ff;
+      --blue-deep: #163f73;
+      --blue-light: #e9f4ff;
+      --accent: #2e7fd3;
+      --background: #f4f7fd;
+      --white: #ffffff;
+      --text-main: #1b2340;
+      --text-muted: #5e6c84;
+      --border-soft: #d5e3f5;
+      --shadow-soft: 0 18px 45px rgba(12, 49, 92, 0.16);
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-pill: 999px;
+      --transition-fast: 0.2s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 30%, #f4f8ff 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(10, 28, 60, 0.98);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(4, 22, 50, 0.4);
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #ffffff;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 40% 60% 45% 55%;
+      background: radial-gradient(circle at 20% 0%, #63b8ff 0%, #2e7fd3 45%, #0b1f3b 100%);
+      box-shadow: 0 0 18px rgba(59,169,255,0.8);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-text strong {
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-tagline {
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.92rem;
+    }
+
+    .nav-links a {
+      color: #e5f1ff;
+      padding: 4px 0;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #63b8ff, #2e7fd3);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.nav-active::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #3ba9ff, #163f73);
+      color: #ffffff;
+      box-shadow: 0 10px 25px rgba(19, 93, 162, 0.5);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 35px rgba(19, 93, 162, 0.55);
+    }
+
+    .btn-secondary {
+      background: rgba(18, 40, 83, 0.9);
+      border: 1px solid rgba(142, 186, 236, 0.6);
+      color: #e5f1ff;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(14, 30, 64, 1);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 54px 20px 32px;
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .hero-title {
+      font-size: 2.1rem;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #3ba9ff, #163f73);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 16px;
+    }
+
+    .hero-list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .hero-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .hero-list span {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(59,169,255,0.7);
+      background: rgba(59,169,255,0.08);
+      color: var(--accent);
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at 0% 0%, #e4f1ff 0%, #c4ddff 40%, #ffffff 100%);
+      border-radius: 20px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(173,200,239,0.9);
+      box-shadow: 0 18px 40px rgba(12,49,92,0.15);
+    }
+
+    .hero-card-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--blue-deep);
+      margin-bottom: 6px;
+    }
+
+    .hero-card-body {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(59, 169, 255, 0.08);
+      border: 1px solid rgba(175, 206, 243, 0.7);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .image-frame {
+      border-radius: 18px;
+      background: radial-gradient(circle at 20% 0%, #ffffff 0%, #e5f1ff 50%, #c5daf6 100%);
+      padding: 12px;
+      border: 1px solid rgba(176, 201, 238, 0.9);
+      box-shadow: 0 18px 45px rgba(12, 49, 92, 0.13);
+      margin-top: 10px;
+    }
+
+    .image-caption {
+      margin-top: 6px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Sections */
+    section {
+      padding: 34px 20px;
+    }
+
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      max-width: 720px;
+      margin-bottom: 20px;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 18px 18px 16px;
+      box-shadow: 0 10px 24px rgba(12, 49, 92, 0.06);
+    }
+
+    .card-muted {
+      background: linear-gradient(135deg, #f3f7ff, #f9fbff);
+    }
+
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--navy);
+    }
+
+    .card-body {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .values-list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .values-list li span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* FAQ */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    details {
+      background: rgba(255,255,255,0.98);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-soft);
+      padding: 10px 12px;
+      box-shadow: 0 6px 20px rgba(12,49,92,0.04);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    summary::marker {
+      display: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-icon {
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    details[open] {
+      border-color: rgba(59,169,255,0.7);
+      box-shadow: 0 10px 26px rgba(12,49,92,0.07);
+    }
+
+    details > div {
+      margin-top: 6px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: auto;
+      padding: 26px 20px 30px;
+      background: linear-gradient(180deg, #0b1f3b, #020713);
+      color: #d7e4ff;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 0.85rem;
+    }
+
+    .footer-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .footer small {
+      color: #8da4cc;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+      .hero-right {
+        order: -1;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+      .navbar-inner {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .nav-links {
+        flex: 1 0 100%;
+        justify-content: center;
+      }
+      .nav-cta {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 1.9rem;
+      }
+      .navbar-inner {
+        padding-inline: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="home.html" class="brand">
+        <div class="brand-mark"></div>
+        <div class="brand-text">
+          <strong>Finesse Web Solutions</strong>
+          <span class="brand-tagline">Thoughtful websites for small businesses</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="faq-about.html" class="nav-active">FAQ &amp; About</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="tel:443-797-2249" class="btn btn-primary">Call 443-797-2249</a>
+        <a href="sms:443-797-2249" class="btn btn-secondary">Text 443-797-2249</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero / About intro -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-label">About finesse web solutions</div>
+          <h1 class="hero-title">We believe small businesses deserve <span>modern tools to compete.</span></h1>
+          <p class="hero-subtitle">
+            Finesse Web Solutions exists for one clear reason: to help small, service-based businesses across the
+            U.S. get more clients and look more credible online — without feeling overwhelmed by technology.
+          </p>
+          <ul class="hero-list">
+            <li><span>&#10003;</span>We’re here to help you grow your business, not just sell you a website.</li>
+            <li><span>&#10003;</span>We specialize in 3-page, done-for-you websites with calming blues and white space and clarity.</li>
+            <li><span>&#10003;</span>We never launch a site until you’re proud to show it to your customers.</li>
+          </ul>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-card">
+            <div class="hero-card-title">Who we build for</div>
+            <p class="hero-card-body">
+              Plumbers, barbers, contractors, cleaners, electricians, landscapers, handymen, local shops, and other
+              service-based small businesses — anywhere in the United States.
+            </p>
+            <div class="pill-row">
+              <span class="pill">Service-based businesses</span>
+              <span class="pill">Across the U.S.</span>
+              <span class="pill">Local &amp; neighborhood focused</span>
+              <span class="pill">Phone &amp; walk-in clients</span>
+            </div>
+          </div>
+          <div class="image-frame">
+            <!-- Image: Friendly web designer on a video call with a small business owner, blue-and-white interface visible on screen -->
+            <img src="placeholder" alt="Friendly web designer on a video call with a small business owner">
+            <div class="image-caption">
+              A calm, supportive partner — walking you through each step until your blue-and-white website feels just right.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Mission & Approach -->
+    <section>
+      <div class="section-inner">
+        <div class="grid-2">
+          <div class="card">
+            <h2 class="card-title">Our mission</h2>
+            <p class="card-body">
+              Our mission is simple: <strong>help you get more clients and look more credible online.</strong> We do
+              this by creating clear, modern websites that make it easy for people to understand what you do and how to contact you.
+            </p>
+            <ul class="values-list">
+              <li><span>We listen.</span> We start by understanding your story, not forcing you into a template that doesn’t fit.</li>
+              <li><span>We simplify.</span> We take the stress out of tech so you can stay focused on your customers.</li>
+              <li><span>We respect your time.</span> Websites are typically completed in <strong>1–2 days</strong>, with live edits over Zoom.</li>
+            </ul>
+          </div>
+
+          <div class="card card-muted">
+            <h2 class="card-title">Our design philosophy</h2>
+            <p class="card-body">
+              Every site we build uses a clean blue-and-white style — modern blue gradients, calming blues,
+              and navy + sky blue accents — to create a sense of trust, calm, and professionalism.
+            </p>
+            <ul class="values-list">
+              <li><span>Clarity first.</span> White space and clarity so your message is easy to skim.</li>
+              <li><span>Credibility.</span> A look and feel that says “established, reliable, and organized.”</li>
+              <li><span>Conversion-focused.</span> Clear calls-to-action that encourage calls, texts, and inquiries.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-label">Frequently asked questions</div>
+          <h2 class="section-title">Questions small business owners ask us most.</h2>
+          <p class="section-subtitle">
+            If you’re not technical, that’s completely okay. Our job is to keep things simple and transparent so you
+            always know what’s happening and why.
+          </p>
+        </div>
+
+        <div class="faq-grid">
+          <details>
+            <summary>
+              <span>Who is Finesse Web Solutions best for?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div>
+              We’re ideal for small, service-based businesses across the United States — plumbers, barbers,
+              contractors, cleaners, electricians, landscapers, handymen, local shops, and more. If your customers
+              search online before they call you, a simple, professional 3-page website can make a big difference.
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span>What exactly do I get for $1,000?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div>
+              You get a custom <strong>3-page website</strong>, designed around your business, plus
+              <strong>free hosting forever</strong>. There are <strong>no monthly website or hosting fees</strong>. The
+              design is modern, mobile-friendly, and built in a calming blue-and-white style to help you look
+              professional and trustworthy online.
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span>Are there any hidden or monthly fees?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div>
+              No hidden fees. The website itself is a <strong>one-time price: $1,000</strong> with <strong>free hosting forever</strong>.
+              The only ongoing cost is your domain (like <em>yourbusiness.com</em>), which you’ll buy from GoDaddy or a
+              similar provider. Domain names typically renew yearly with the domain company.
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span>How does the domain work?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div>
+              You’ll purchase your domain from GoDaddy or a similar provider so you fully own it. Once you’ve bought it,
+              we connect the domain to your new website for you. You don’t need to worry about DNS settings or technical steps —
+              we handle that part.
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span>How long does it really take?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div>
+              Our process is designed to be fast and stress-free. Websites are typically completed in
+              <strong>1–2 days</strong>:
+              <br><br>
+              – Day 0: Intro call (5–10 minutes).<br>
+              – Day 1: We build your full demo website.<br>
+              – Day 1 evening: Zoom session to finalize live with you.<br>
+              – Day 2: Your website launches once you approve the final design.
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span>What if I don’t like the first version?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div>
+              That’s completely okay. The demo is meant to be a starting point. We walk through it with you on Zoom
+              and adjust the wording, images, sections, and layout live until you feel it truly represents your
+              business. We <strong>do not launch the website until the client loves the final design.</strong>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span>Do I need to write all of the text for the site?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div>
+              No. You just explain your services and what makes your business unique in plain language. We then turn that
+              into clear, simple website copy written for non-technical visitors. If you’d like to adjust any wording, we’ll
+              update it together during the Zoom session.
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span>What happens after the website is launched?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div>
+              Once your site is live, it will continue running with <strong>free hosting</strong>. If you ever need changes
+              or updates, you can reach out and we’ll discuss exactly what you’d like adjusted. Our goal is that your site
+              continues to reflect your current services and brand.
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span>Is this only for businesses in one city?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div>
+              We work with small businesses <strong>across the United States</strong>. Whether you’re in a big city or a
+              smaller town, your website can still present you as professional, organized, and ready for new clients.
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span>What if I don’t currently have any website?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div>
+              That’s perfectly fine — in fact, it’s one of the main problems we solve. If you have no online presence,
+              we’ll guide you from nothing to a complete, modern website that gives your business a real online home.
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span>What if my existing website is outdated or broken?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div>
+              That’s the other main situation we see. Maybe your site looks old, doesn’t work well on phones, or feels
+              messy and confusing. We’ll create a brand new, clean blue-and-white design that feels fresh, trustworthy,
+              and much easier for customers to use.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process mention & CTA -->
+    <section>
+      <div class="section-inner">
+        <div class="card">
+          <h2 class="card-title">A quick recap of the process.</h2>
+          <p class="card-body">
+            When you’re ready to move forward, here’s what will happen:
+          </p>
+          <ol class="values-list">
+            <li><span>1.</span> Prospect calls or texts <strong>443-797-2249</strong> for a 5–10 minute intro call.</li>
+            <li><span>2.</span> We learn about their business and online challenges.</li>
+            <li><span>3.</span> We schedule a follow-up call for the next day.</li>
+            <li><span>4.</span> By the next day, we prepare a full demo website.</li>
+            <li><span>5.</span> We get on a Zoom call and finalize the design live with them.</li>
+            <li><span>6.</span> Once approved, we launch the website within minutes.</li>
+          </ol>
+          <p class="card-body" style="margin-top:8px;">
+            It’s a calm, supportive process that ends with a modern, blue-and-white site your customers can trust.
+          </p>
+          <div style="margin-top:12px;">
+            <a href="tel:443-797-2249" class="btn btn-primary">CALL 443-797-2249</a>
+            <a href="sms:443-797-2249" class="btn btn-secondary" style="margin-left:6px;">TEXT 443-797-2249</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <strong>You deserve a website you’re proud of.</strong>
+        <p>Whether you’re starting from zero or replacing an outdated site, we’re here to support you — with empathy, clarity, and modern tools that help your business grow.</p>
+        <div class="footer-cta">
+          <a href="tel:443-797-2249" class="btn btn-primary">CALL 443-797-2249</a>
+          <a href="sms:443-797-2249" class="btn btn-secondary">TEXT 443-797-2249</a>
+        </div>
+      </div>
+      <div>
+        <small>Finesse Web Solutions · Calming blues, modern blue gradients, and white space and clarity for small businesses across the U.S.</small><br>
+        <small>We do not launch the website until the client loves the final design.</small>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

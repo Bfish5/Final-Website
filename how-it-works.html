@@ -1,0 +1,887 @@
+<!-- ===========================
+       how-it-works.html
+=========================== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>How It Works | Finesse Web Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --navy: #0b1f3b;
+      --sky: #3ba9ff;
+      --sky-soft: #63b8ff;
+      --blue-deep: #163f73;
+      --blue-light: #e9f4ff;
+      --accent: #2e7fd3;
+      --background: #f4f7fd;
+      --white: #ffffff;
+      --text-main: #1b2340;
+      --text-muted: #5e6c84;
+      --border-soft: #d5e3f5;
+      --shadow-soft: 0 18px 45px rgba(12, 49, 92, 0.18);
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-pill: 999px;
+      --transition-fast: 0.2s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 28%, #f4f8ff 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(10, 28, 60, 0.98);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(4, 22, 50, 0.4);
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #ffffff;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 40% 60% 45% 55%;
+      background: radial-gradient(circle at 20% 0%, #63b8ff 0%, #2e7fd3 45%, #0b1f3b 100%);
+      box-shadow: 0 0 18px rgba(59,169,255,0.8);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-text strong {
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-tagline {
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.92rem;
+    }
+
+    .nav-links a {
+      color: #e5f1ff;
+      padding: 4px 0;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #63b8ff, #2e7fd3);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.nav-active::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #3ba9ff, #163f73);
+      color: #ffffff;
+      box-shadow: 0 10px 25px rgba(19, 93, 162, 0.5);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 35px rgba(19, 93, 162, 0.55);
+    }
+
+    .btn-secondary {
+      background: rgba(18, 40, 83, 0.9);
+      border: 1px solid rgba(142, 186, 236, 0.6);
+      color: #e5f1ff;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(14, 30, 64, 1);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 54px 20px 32px;
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #3ba9ff, #163f73);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 16px;
+    }
+
+    .hero-steps {
+      list-style: none;
+      margin-top: 8px;
+      display: grid;
+      gap: 6px;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .hero-steps li span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at 0% 0%, #e4f1ff 0%, #c4ddff 40%, #ffffff 100%);
+      border-radius: 20px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(173,200,239,0.9);
+      box-shadow: 0 18px 40px rgba(12,49,92,0.15);
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .hero-card-title {
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--blue-deep);
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(59,169,255,0.1);
+      border: 1px solid rgba(118,176,238,0.8);
+      font-size: 0.78rem;
+      color: var(--blue-deep);
+    }
+
+    .hero-card-body {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .timeline-mini {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 10px;
+      font-size: 0.8rem;
+    }
+
+    .timeline-mini-item {
+      background: rgba(255,255,255,0.9);
+      border-radius: 12px;
+      padding: 8px;
+      border: 1px solid rgba(183,205,237,0.9);
+    }
+
+    .timeline-mini-item strong {
+      display: block;
+      font-size: 0.77rem;
+      margin-bottom: 3px;
+      color: var(--blue-deep);
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    .hero-note strong {
+      color: var(--accent);
+    }
+
+    /* Sections */
+    section {
+      padding: 36px 20px;
+    }
+
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      max-width: 720px;
+      margin-bottom: 22px;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 18px 18px 16px;
+      box-shadow: 0 10px 24px rgba(12, 49, 92, 0.06);
+    }
+
+    .card-muted {
+      background: linear-gradient(135deg, #f3f7ff, #f9fbff);
+    }
+
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--navy);
+    }
+
+    .card-body {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(59, 169, 255, 0.08);
+      border: 1px solid rgba(175, 206, 243, 0.7);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Vertical timeline */
+    .timeline {
+      position: relative;
+      margin-top: 18px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 12px;
+      width: 3px;
+      height: calc(100% - 20px);
+      background: linear-gradient(180deg, #63b8ff, #163f73);
+      border-radius: 999px;
+      opacity: 0.95;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 36px;
+      margin-bottom: 18px;
+    }
+
+    .timeline-marker {
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #ffffff 0%, #63b8ff 50%, #163f73 100%);
+      box-shadow: 0 0 12px rgba(59,169,255,0.9);
+      border: 2px solid #ffffff;
+    }
+
+    .timeline-time {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-size: 1rem;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+
+    .timeline-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .timeline-emotion {
+      font-size: 0.85rem;
+      color: var(--blue-deep);
+      margin-top: 4px;
+      opacity: 0.9;
+    }
+
+    /* Role split */
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .role-box {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-soft);
+      padding: 14px 14px 12px;
+      background: rgba(255,255,255,0.96);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .role-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .stacked-list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 0.9rem;
+    }
+
+    .stacked-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: var(--text-muted);
+    }
+
+    .stacked-list span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(59, 169, 255, 0.09);
+      border: 1px solid rgba(59, 169, 255, 0.7);
+      color: var(--accent);
+      font-size: 0.78rem;
+      flex-shrink: 0;
+    }
+
+    /* Image frame */
+    .image-frame {
+      border-radius: 18px;
+      background: radial-gradient(circle at 20% 0%, #ffffff 0%, #e5f1ff 50%, #c5daf6 100%);
+      padding: 12px;
+      border: 1px solid rgba(176, 201, 238, 0.9);
+      box-shadow: 0 18px 45px rgba(12, 49, 92, 0.13);
+      margin-top: 10px;
+    }
+
+    .image-caption {
+      margin-top: 6px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: auto;
+      padding: 26px 20px 30px;
+      background: linear-gradient(180deg, #0b1f3b, #020713);
+      color: #d7e4ff;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 0.85rem;
+    }
+
+    .footer-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .footer small {
+      color: #8da4cc;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+      .hero-right {
+        order: -1;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .role-grid {
+        grid-template-columns: 1fr;
+      }
+      .navbar-inner {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .nav-links {
+        flex: 1 0 100%;
+        justify-content: center;
+      }
+      .nav-cta {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 1.9rem;
+      }
+      .timeline::before {
+        left: 10px;
+      }
+      .timeline-item {
+        padding-left: 32px;
+      }
+      .navbar-inner {
+        padding-inline: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="home.html" class="brand">
+        <div class="brand-mark"></div>
+        <div class="brand-text">
+          <strong>Finesse Web Solutions</strong>
+          <span class="brand-tagline">Calming blues. Clear process.</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="how-it-works.html" class="nav-active">How It Works</a>
+        <a href="faq-about.html">FAQ &amp; About</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="tel:443-797-2249" class="btn btn-primary">Call 443-797-2249</a>
+        <a href="sms:443-797-2249" class="btn btn-secondary">Text 443-797-2249</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-label">Simple, respectful, fast</div>
+          <h1 class="hero-title">Exactly how we build your <span>3-page website</span> in 1–2 days.</h1>
+          <p class="hero-subtitle">
+            No jargon. No pressure. Just a calm, guided process that starts with a quick call and ends
+            with a modern blue-and-white website your clients can trust.
+          </p>
+          <ul class="hero-steps">
+            <li><span>1.</span> Prospect calls or texts <strong>443-797-2249</strong> for a 5–10 minute intro call.</li>
+            <li><span>2.</span> We learn about your business and online challenges.</li>
+            <li><span>3.</span> We schedule a follow-up call for the next day.</li>
+            <li><span>4.</span> By the next day, we prepare a full demo website.</li>
+            <li><span>5.</span> We get on a Zoom call and finalize the design live with you.</li>
+            <li><span>6.</span> Once approved, we launch the website within minutes.</li>
+          </ul>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-card">
+            <div class="hero-card-header">
+              <div class="hero-card-title">Timeline overview</div>
+              <span class="tag">1–2 days · $1,000 · Free hosting</span>
+            </div>
+            <p class="hero-card-body">
+              We design your site in a modern blue gradient with calming blues, navy + sky blue accents,
+              and plenty of white space and clarity so everything feels easy to navigate.
+            </p>
+            <div class="timeline-mini">
+              <div class="timeline-mini-item">
+                <strong>Day 0</strong>
+                Intro call<br>5–10 minutes
+              </div>
+              <div class="timeline-mini-item">
+                <strong>Day 1</strong>
+                Demo built<br>&amp; reviewed
+              </div>
+              <div class="timeline-mini-item">
+                <strong>Day 2</strong>
+                Launch day<br>Site goes live
+              </div>
+            </div>
+            <p class="hero-note">
+              Our mission is to help you <strong>get more clients and look more credible online</strong> — not to drown you in tech details.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Timeline (Vertical stacked) -->
+    <section>
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-label">Detailed timeline</div>
+          <h2 class="section-title">What happens from the first call to launch.</h2>
+          <p class="section-subtitle">
+            Here’s your full, vertical timeline — from feeling stressed about your current website (or lack of one)
+            to feeling relieved as your new, calming blue-and-white site goes live.
+          </p>
+        </div>
+
+        <div class="card card-muted">
+          <div class="timeline">
+
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-time">Day 0 — Intro Call</div>
+              <div class="timeline-title">A quick, friendly conversation.</div>
+              <p class="timeline-text">
+                You call or text <strong>443-797-2249</strong>. We hop on a 5–10 minute call where you simply explain:
+                what you do, where you serve, and what’s currently frustrating you about your online presence.
+              </p>
+              <p class="timeline-emotion">
+                You’ll feel heard — not judged. Our goal is to understand your business, not to sell you on complicated extras.
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-time">Day 1 Morning — We Build Your Demo</div>
+              <div class="timeline-title">Your new site takes shape behind the scenes.</div>
+              <p class="timeline-text">
+                We take everything you shared and start building your custom <strong>3-page website</strong> in our
+                clean blue-and-white style. We organize your services, contact info, and story into a layout that’s easy to skim.
+              </p>
+              <p class="timeline-emotion">
+                While you go about your day, you’ll know real progress is happening — without you having to touch any tech.
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-time">Day 1 Afternoon — Your Demo Is Ready</div>
+              <div class="timeline-title">You see your future website for the first time.</div>
+              <p class="timeline-text">
+                By the next day, we prepare a full demo website with calming blues, navy + sky blue accents,
+                and modern blue gradients that make your brand feel current and trustworthy.
+              </p>
+              <p class="timeline-emotion">
+                Most clients feel a wave of relief here — <em>“Finally, this is what my business should have looked like online all along.”</em>
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-time">Day 1 Evening — Zoom Edit Session</div>
+              <div class="timeline-title">We refine everything live, together.</div>
+              <p class="timeline-text">
+                We get on a Zoom call and walk through each page with you — Home, Services, and Contact (or whichever
+                3 pages fit your business best). You tell us what you like and what you’d like changed. We adjust it live.
+              </p>
+              <p class="timeline-emotion">
+                You’ll feel in control and supported. No guessing, no back-and-forth emails, just real-time changes until it feels right.
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-marker"></div>
+              <div class="timeline-time">Day 2 — Launch Day (Your Site Goes Live)</div>
+              <div class="timeline-title">Your new online presence is officially open for business.</div>
+              <p class="timeline-text">
+                Once you’re happy, we connect your domain (purchased from GoDaddy or a similar provider) and launch
+                your site. Usually within minutes, people searching your business will see your new, professional website.
+              </p>
+              <p class="timeline-emotion">
+                This is the moment your stress turns into confidence. Instead of worrying about your website, you’ll
+                know it’s working quietly in the background to bring you more clients.
+              </p>
+            </div>
+
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:6px;">
+            And remember: we <strong>do not launch the website until you love the final design.</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We Need vs What We Handle -->
+    <section>
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-label">Clear expectations</div>
+          <h2 class="section-title">We keep your to-do list short. We handle the rest.</h2>
+          <p class="section-subtitle">
+            You’re busy running a business. Our process is built so you only need to provide a few essentials — then
+            we turn them into a full, calming, trustworthy website in our signature blue-and-white style.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="card-title">What we need from you</h3>
+            <p class="card-body">Just the basics:</p>
+            <ul class="stacked-list">
+              <li><span>1</span>Your business name, location, and service areas.</li>
+              <li><span>2</span>A short description of what you do and who you serve.</li>
+              <li><span>3</span>Your best phone number, email, and preferred contact method.</li>
+              <li><span>4</span>Any photos or logo you already have (optional, but helpful).</li>
+              <li><span>5</span>The domain you bought from GoDaddy or a similar provider.</li>
+            </ul>
+            <p class="card-body" style="margin-top:10px;">
+              That’s it. You don’t need to write paragraphs of website copy or understand any tech.
+            </p>
+          </div>
+
+          <div class="card card-muted">
+            <h3 class="card-title">What Finesse Web Solutions handles</h3>
+            <p class="card-body">
+              We take care of the heavy lifting, including:
+            </p>
+            <ul class="stacked-list">
+              <li><span>&#10003;</span>Structuring your 3-page site for clarity and easy navigation.</li>
+              <li><span>&#10003;</span>Writing simple, clear copy that feels friendly and professional.</li>
+              <li><span>&#10003;</span>Designing a clean blue-and-white style with modern blue gradients.</li>
+              <li><span>&#10003;</span>Making sure the site looks great on phones and desktops.</li>
+              <li><span>&#10003;</span>Connecting your domain and launching the site when you’re happy.</li>
+            </ul>
+            <p class="card-body" style="margin-top:10px;">
+              Think of it as a <strong>done-for-you website</strong> with no tech headaches — we handle everything
+              so you can keep serving your customers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process recap with price -->
+    <section>
+      <div class="section-inner">
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="card-title">The 6-step process (recap)</h3>
+            <p class="card-body">
+              On every project, we follow the same clear process:
+            </p>
+            <ol class="stacked-list" style="counter-reset:step;">
+              <li><span>1</span>Prospect calls or texts <strong>443-797-2249</strong> for a 5–10 minute intro call.</li>
+              <li><span>2</span>We learn about their business and online challenges.</li>
+              <li><span>3</span>We schedule a follow-up call for the next day.</li>
+              <li><span>4</span>By the next day, we prepare a full demo website.</li>
+              <li><span>5</span>We get on a Zoom call and finalize the design live with them.</li>
+              <li><span>6</span>Once approved, we launch the website within minutes.</li>
+            </ol>
+          </div>
+
+          <div>
+            <div class="card card-muted">
+              <h3 class="card-title">Straightforward, one-time pricing.</h3>
+              <p class="card-body">
+                For a custom, done-for-you <strong>3-page website</strong>:
+              </p>
+              <p class="card-body" style="font-size:1.05rem; margin-top:4px;">
+                <strong style="color:var(--accent); font-size:1.2rem;">$1,000</strong> &nbsp; · &nbsp; <strong>Free hosting forever</strong> · No monthly fees.
+              </p>
+              <p class="card-body" style="margin-top:8px;">
+                No surprise charges, no upsells you don’t need. Just a modern, calming website designed to help you
+                get more clients and look more credible online.
+              </p>
+            </div>
+
+            <div class="image-frame">
+              <!-- Image: Split-screen of a messy, outdated website on the left and a clean blue-and-white modern site on the right -->
+              <img src="placeholder" alt="Before and after of a messy old website becoming a clean blue-and-white modern site">
+              <div class="image-caption">
+                From “outdated and confusing” to “clear, calm, and professional” — all in a navy and sky-blue color palette.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:22px; text-align:center;">
+          <p style="font-size:0.95rem; color:var(--text-muted); margin-bottom:10px;">
+            When you’re ready, we’re here to make this easy.
+          </p>
+          <a href="tel:443-797-2249" class="btn btn-primary">CALL 443-797-2249</a>
+          <a href="sms:443-797-2249" class="btn btn-secondary" style="margin-left:6px;">TEXT 443-797-2249</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <strong>Start with a simple conversation.</strong>
+        <p>Tell us what’s not working about your current website (or that you don’t have one yet), and we’ll guide you from there.</p>
+        <div class="footer-cta">
+          <a href="tel:443-797-2249" class="btn btn-primary">CALL 443-797-2249</a>
+          <a href="sms:443-797-2249" class="btn btn-secondary">TEXT 443-797-2249</a>
+        </div>
+      </div>
+      <div>
+        <small>Finesse Web Solutions · Modern blue gradients, calming blues, and white space and clarity for small businesses across the U.S.</small><br>
+        <small>We do not launch the website until the client loves the final design.</small>
+      </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
